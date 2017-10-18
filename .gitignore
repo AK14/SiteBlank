@@ -16,5 +16,5 @@
 /vendor/
 /web/bundles/
 .idea
-/app/bootstrap.php.cache
+/SiteBlank/var/bootstrap.php.cache
 /composer.lock
