@@ -1,0 +1,23 @@
+{% extends "::base.html.twig" %}
+
+{% block title %}AppBundle:Auth:login{% endblock %}
+
+{% block body %}
+<h1>Welcome to the Auth:login page</h1>
+    {# блок ошибки #}
+    {% if error %}
+        <div> {{ error.messageKey|trans(error.messageData, 'security') }} </div>
+    {% endif %}
+
+    {# блок формы #}
+    <form action="{{ path('login_check') }}" method="post">
+        {# имя пользователя #}
+        <label for="username">Имя пользователя:</label>
+        <input type="text" id="username" name="_username" value="">
+
+        <label for="password">Пароль:</label>
+        <input type="password" id="password" name="_password">
+
+        <button type="submit"> Войти </button>
+    </form>
+{% endblock %}
