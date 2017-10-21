@@ -1,0 +1,30 @@
+AppBundle\Entity\Role:
+    type: entity
+    table: Role
+    id:
+        idRole:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            column: id_role
+            generator:
+                strategy: IDENTITY
+    fields:
+        title:
+            type: string
+            nullable: false
+            length: 45
+            options:
+                fixed: false
+    manyToMany:
+        userUser:
+            targetEntity: User
+            cascade: {  }
+            fetch: LAZY
+            mappedBy: roleRole
+            inversedBy: null
+            joinTable: null
+            orderBy: null
+    lifecycleCallbacks: {  }

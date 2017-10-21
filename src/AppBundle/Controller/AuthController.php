@@ -12,21 +12,22 @@ use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 
 class AuthController extends Controller
 {
+
     public function loginAction(Request $request, AuthenticationUtils $authUtils)
     {
-      $error = $authUtils->getLastAuthenticationError();
 
+      $errors = $authUtils->getLastAuthenticationError();
 //  последний авторизованный пользователь
       $lastUsername = $authUtils->getLastUsername();
 
 //      возвращаем форму регистрации
         return $this->render('AppBundle:Auth:login.html.twig', array(
           'last_username' => $lastUsername,
-          'error' => $error
+          'errors' => $errors
         ));
     }
 
-    public function loginCheck(Request $request){
+    public function logoutAction(){
 
     }
 
