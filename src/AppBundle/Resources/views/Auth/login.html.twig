@@ -6,7 +6,7 @@
 <h3> SiteBlank login page </h3>
     {# блок ошибки #}
     {% if errors %}
-        {#<div> {{ error.messageKey|trans(error.messageData, 'security') }} </div>#}
+        <div> {{ errors.messageKey }} </div>
     {% endif %}
 
     {# блок формы #}
@@ -14,7 +14,7 @@
         {# имя пользователя #}
         <label for="username">Имя пользователя:</label>
         <input type="text" id="username" name="_username" >
-
+        {# пароль #}
         <label for="password">Пароль:</label>
         <input type="password" id="password" name="_password">
 

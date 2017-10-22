@@ -6,39 +6,34 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
- * User
- *
  * @ORM\Table(name="User")
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass='AppBundle\Repository\UserRepository)
  */
-class User implements UserInterface
+class User implements UserInterface, \Serializable
 {
     /**
-     * @var integer
-     *
      * @ORM\Column(name="id_user", type="integer")
      * @ORM\Id
-     * @ORM\GeneratedValue(strategy="IDENTITY")
+     * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $idUser;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="name", type="string", length=45, nullable=false)
+     * @ORM\Column(name="username", type="string", length=25, nullable=false)
      */
-    private $name;
+    private $username;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="password", type="string", length=45, nullable=false)
+     * @ORM\Column(name="password", type="string", length=60, nullable=false)
      */
     private $password;
 
+  /**
+   * @ORRM\Column(name="email", type="string", length=60, unique=true)
+   */
+    private $email;
+
     /**
-     * @var \DateTime
-     *
      * @ORM\Column(name="created_at", type="datetime", nullable=true)
      */
     private $createdAt;
@@ -81,8 +76,10 @@ class User implements UserInterface
    */
   public function getPassword()
   {
-    // TODO: Implement getPassword() method.
+    return $this->password;
   }
+
+
 
   /**
    *
@@ -97,7 +94,7 @@ class User implements UserInterface
    */
   public function getUsername()
   {
-    // TODO: Implement getUsername() method.
+    return $this->username;
   }
 
   /**
@@ -106,6 +103,24 @@ class User implements UserInterface
   public function eraseCredentials()
   {
     // TODO: Implement eraseCredentials() method.
+  }
+
+  public function serialize()
+  {
+    return serialize(array(
+      $this->idUser,
+      $this->username,
+      $this->password
+    ));
+  }
+
+  public function unserialize($serialized)
+  {
+    list(
+      $this->idUser,
+      $this->username,
+      $this->password
+      )= unserialize($serialized);
   }
 
 

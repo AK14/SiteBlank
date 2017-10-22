@@ -15,7 +15,6 @@ class AuthController extends Controller
 
     public function loginAction(Request $request, AuthenticationUtils $authUtils)
     {
-
       $errors = $authUtils->getLastAuthenticationError();
 //  последний авторизованный пользователь
       $lastUsername = $authUtils->getLastUsername();

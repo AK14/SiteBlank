@@ -11,4 +11,5 @@ logout:
     defaults: {_controller: AppBundle:Auth:logout }
 admin:
     path: /admin
+    defaults: {_controller: AppBundle:Admin:index}
 
